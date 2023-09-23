@@ -1,40 +1,44 @@
+// Signup Page
 const signup = document.getElementById("signup");
+const msg = document.getElementById("msg");
 
-signup.addEventListener("click", function(event) {
-    event.preventDefault(); // Prevent form submission
-    
-    var msg = document.getElementById("msg");
-    var name = document.getElementById("name").value;
-    var email = document.getElementById("email").value;
-    var pass = document.getElementById("password").value;
-    var cpass = document.getElementById("cpassword").value;
+function generateAccessToken() {
+    let characters = '0123456789abcde';
+    let token = '';
+    for (let i = 0; i < 16; i++) {
+        token += characters.charAt(Math.floor(Math.random() * characters.length));
+    }
+    return token;
+}
 
-    if (name === '' || email === '' || pass === '') {
+// Redirect to profile page if a logged-in user tries to navigate to the signup page
+const userJSON = localStorage.getItem('user');
+if (userJSON && window.location.href.includes('signup.html')) {
+    window.location.href = 'profile.html';
+}else{
+    signup.addEventListener('click', (event) => {
+    event.preventDefault();
+    var name = document.getElementById('name').value;
+    const email = document.getElementById('email').value;
+    const password = document.getElementById('password').value;
+    const cpassword = document.getElementById('cpassword').value;
+
+    if(name==='' || email==='' || password===''){
         msg.innerHTML = "All Fields are mandatory";
-        return; // Stop further execution
+        return;
     }
 
-    if (pass !== cpass) {
+    if (password === cpassword) {
+        const accessToken = generateAccessToken();
+        const user = { name, email, password, accessToken };
+        localStorage.setItem('user', JSON.stringify(user));
+        msg.innerHTML = 'Signup successful. Redirecting...';
+        setTimeout(() => {
+            window.location.href = 'profile.html';
+        }, 2000);
+    } else {
         msg.innerHTML = "Passwod and Confirm password didn't match";
-        return; // Stop further execution
-    }else{
-        msg.innerHTML = "Your account created successfully";
-        localStorage.setItem("name1", name);
-        localStorage.setItem("email1", email);
-        localStorage.setItem("pass1", pass);
-        
-        login(name, email);
     }
-
 });
 
-function login(name, email) {
-    var name1 = localStorage.getItem("name1");
-    var email1 = localStorage.getItem("email1");
-    
-    if (name === name1 && email === email1) {
-        window.location.href = "profile.html";
-    } else {
-        alert("User Not found");
-    }
 }
