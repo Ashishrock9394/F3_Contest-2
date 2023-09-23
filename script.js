@@ -33,7 +33,7 @@ function login(name, email) {
     var email1 = localStorage.getItem("email1");
     
     if (name === name1 && email === email1) {
-        window.location.href = "home.html";
+        window.location.href = "profile.html";
     } else {
         alert("User Not found");
     }

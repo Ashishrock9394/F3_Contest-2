@@ -1,13 +1,13 @@
 .body{
-    background-image: url(./bg1.svg);
+    background-image: url(./images/bg1.svg);
     background-repeat: no-repeat;
-    background-position: center;
+    background-position:center bottom;
     background-size: contain;
 }
 .body1{
-    background-image: url(./bg2.svg);
+    background-image: url(./images/bg2.svg);
     background-repeat: no-repeat;
-    background-position: bottom;
+    background-position:center bottom;
     background-size: contain;
 
 }
