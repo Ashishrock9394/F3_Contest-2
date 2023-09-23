@@ -1,0 +1,22 @@
+.body{
+    background-image: url(./bg1.svg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+}
+.body1{
+    background-image: url(./bg2.svg);
+    background-repeat: no-repeat;
+    background-position: bottom;
+    background-size: contain;
+
+}
+.signup{
+    box-shadow: 0px 6px 8px 0px #0000000D;
+}
+.success-text{
+    color: #625BF7;
+}
+.profile{
+    font-size: 300%;
+}
